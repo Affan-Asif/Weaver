@@ -1,0 +1,174 @@
+<<<FILE: index.html >>>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimalist Tasks</title>
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text: #000000;
+            --border: #000000;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            padding: 4rem 1rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h1 {
+            font-weight: 800;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            letter-spacing: -1px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 2rem;
+        }
+
+        input[type="text"] {
+            flex-grow: 1;
+            padding: 12px;
+            border: 2px solid var(--border);
+            outline: none;
+            font-size: 1rem;
+            background: transparent;
+        }
+
+        button#add-btn {
+            padding: 12px 24px;
+            background: var(--text);
+            color: var(--bg);
+            border: 2px solid var(--border);
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        button#add-btn:hover {
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            gap: 12px;
+        }
+
+        .task-text {
+            flex-grow: 1;
+            cursor: pointer;
+        }
+
+        .completed .task-text {
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+
+        .delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 0 5px;
+            opacity: 0.3;
+        }
+
+        .delete-btn:hover {
+            opacity: 1;
+        }
+
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--text);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Tasks</h1>
+    <div class="input-group">
+        <input type="text" id="task-input" placeholder="What needs to be done?" autofocus>
+        <button id="add-btn">Add</button>
+    </div>
+    <ul id="task-list"></ul>
+</div>
+
+<script>
+    const input = document.getElementById('task-input');
+    const addBtn = document.getElementById('add-btn');
+    const taskList = document.getElementById('task-list');
+
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+    function render() {
+        taskList.innerHTML = '';
+        tasks.forEach((task, index) => {
+            const li = document.createElement('li');
+            li.className = task.completed ? 'completed' : '';
+            li.innerHTML = `
+                <input type="checkbox" ${task.completed ? 'checked' : ''} onchange="toggleTask(${index})">
+                <span class="task-text" onclick="toggleTask(${index})">${task.text}</span>
+                <button class="delete-btn" onclick="deleteTask(${index})">&times;</button>
+            `;
+            taskList.appendChild(li);
+        });
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+
+    function addTask() {
+        const text = input.value.trim();
+        if (text) {
+            tasks.push({ text, completed: false });
+            input.value = '';
+            render();
+        }
+    }
+
+    window.toggleTask = (index) => {
+        tasks[index].completed = !tasks[index].completed;
+        render();
+    };
+
+    window.deleteTask = (index) => {
+        tasks.splice(index, 1);
+        render();
+    };
+
+    addBtn.addEventListener('click', addTask);
+    input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') addTask();
+    });
+
+    render();
+</script>
+</body>
+</html>
+<<<ENDNOTES>>>
+This is a fully functional, static minimalist to-do application that uses LocalStorage to persist tasks in your browser. No backend or API keys are required.

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daybreak Coffee | Wake Up to Better Beans</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #fdfbf7; color: #4a3728; }
+        .bg-cream { background-color: #fdfbf7; }
+        .text-coffee { color: #4a3728; }
+        .bg-coffee { background-color: #4a3728; }
+    </style>
+</head>
+<body class="font-sans">
+    <nav class="sticky top-0 bg-cream/90 backdrop-blur-sm z-50 border-b border-stone-200">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold tracking-tighter">DAYBREAK</h1>
+            <div class="space-x-6 font-medium">
+                <a href="#plans" class="hover:text-amber-700">Plans</a>
+                <a href="#testimonials" class="hover:text-amber-700">Stories</a>
+                <button class="bg-coffee text-white px-5 py-2 rounded-full hover:bg-stone-700 transition">Get Started</button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="h-[80vh] flex flex-col items-center justify-center text-center px-4">
+        <h2 class="text-6xl md:text-8xl font-extrabold mb-6">Fresh coffee,<br>delivered daily.</h2>
+        <p class="text-xl mb-8 opacity-80 max-w-lg">Experience the world's finest roasts, curated by experts and delivered straight to your doorstep.</p>
+        <a href="#plans" class="bg-amber-700 text-white px-10 py-4 rounded-full text-lg font-bold hover:bg-amber-800 transition">Explore Subscriptions</a>
+    </header>
+
+    <section id="plans" class="py-20 px-6 max-w-6xl mx-auto">
+        <h3 class="text-4xl font-bold text-center mb-16">Choose Your Roast</h3>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-3xl border border-stone-200 shadow-sm">
+                <h4 class="text-2xl font-bold mb-2">Light</h4>
+                <p class="text-4xl font-bold mb-6">$19<span class="text-lg font-normal opacity-60">/mo</span></p>
+                <ul class="space-y-3 mb-8 opacity-80">
+                    <li>✓ Floral & Fruity notes</li>
+                    <li>✓ Ethically sourced</li>
+                    <li>✓ 2 bags per month</li>
+                </ul>
+                <button class="w-full border-2 border-coffee py-3 rounded-full hover:bg-coffee hover:text-white transition">Select</button>
+            </div>
+            <div class="bg-coffee text-white p-8 rounded-3xl shadow-xl transform md:-translate-y-4">
+                <h4 class="text-2xl font-bold mb-2">Regular</h4>
+                <p class="text-4xl font-bold mb-6">$24<span class="text-lg font-normal opacity-60">/mo</span></p>
+                <ul class="space-y-3 mb-8">
+                    <li>✓ Balanced & Smooth</li>
+                    <li>✓ Our most popular</li>
+                    <li>✓ 2 bags per month</li>
+                </ul>
+                <button class="w-full bg-white text-coffee py-3 rounded-full font-bold">Select</button>
+            </div>
+            <div class="bg-white p-8 rounded-3xl border border-stone-200 shadow-sm">
+                <h4 class="text-2xl font-bold mb-2">Bold</h4>
+                <p class="text-4xl font-bold mb-6">$29<span class="text-lg font-normal opacity-60">/mo</span></p>
+                <ul class="space-y-3 mb-8 opacity-80">
+                    <li>✓ Dark & Chocolatey</li>
+                    <li>✓ Intense profile</li>
+                    <li>✓ 2 bags per month</li>
+                </ul>
+                <button class="w-full border-2 border-coffee py-3 rounded-full hover:bg-coffee hover:text-white transition">Select</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="py-20 bg-stone-200/50">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h3 class="text-3xl font-bold mb-12">Loved by coffee enthusiasts</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+                <blockquote class="bg-white p-6 rounded-2xl italic">"Daybreak completely changed my morning routine. The quality is unmatched."</blockquote>
+                <blockquote class="bg-white p-6 rounded-2xl italic">"Finally, a subscription that understands what a good cup of coffee should taste like."</blockquote>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 text-center opacity-60">
+        <p>&copy; 2023 Daybreak Coffee Co. All rights reserved.</p>
+    </footer>
+</body>
+</html>

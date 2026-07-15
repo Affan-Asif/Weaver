@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retry Mechanism</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes pulse-once {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.95); }
+            100% { transform: scale(1); }
+        }
+        .animate-pulse-once { animation: pulse-once 0.3s ease-in-out; }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center p-4">
+
+    <div class="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 text-center">
+        <div id="icon-container" class="mb-6">
+            <div class="w-16 h-16 bg-red-100 text-red-500 rounded-full flex items-center justify-center mx-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </div>
+        </div>
+        
+        <h2 class="text-2xl font-bold text-gray-800 mb-2">Connection Issue</h2>
+        <p class="text-gray-600 mb-8">We encountered an error while trying to process your request. Please try again.</p>
+        
+        <button id="retry-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-xl transition-all flex items-center justify-center gap-2">
+            <span id="btn-text">Retry Request</span>
+            <svg id="spinner" class="hidden animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+        </button>
+    </div>
+
+    <script>
+        const btn = document.getElementById('retry-btn');
+        const spinner = document.getElementById('spinner');
+        const btnText = document.getElementById('btn-text');
+
+        btn.addEventListener('click', () => {
+            btn.classList.add('animate-pulse-once');
+            btn.disabled = true;
+            spinner.classList.remove('hidden');
+            btnText.innerText = 'Connecting...';
+
+            // Simulate network request
+            setTimeout(() => {
+                btn.disabled = false;
+                spinner.classList.add('hidden');
+                btnText.innerText = 'Retry Successful!';
+                btn.classList.replace('bg-blue-600', 'bg-green-600');
+                
+                setTimeout(() => {
+                    btn.classList.replace('bg-green-600', 'bg-blue-600');
+                    btnText.innerText = 'Retry Request';
+                }, 2000);
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

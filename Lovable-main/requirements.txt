@@ -1,0 +1,14 @@
+# --- AI Website Builder (Lovable-style) : builder dependencies ---
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+httpx==0.28.1
+python-multipart==0.0.20
+python-dotenv==1.0.1
+
+# Only needed for the inbound-call agent (voice_agent.py): Twilio voice + WhatsApp
+twilio==9.3.7
+
+# Only needed for the full-duplex realtime agent (voice_realtime.py):
+# Twilio Media Streams + Deepgram websocket. (Deepgram/ElevenLabs are called over
+# plain HTTP/WebSocket, no extra SDKs.)
+websockets==13.1

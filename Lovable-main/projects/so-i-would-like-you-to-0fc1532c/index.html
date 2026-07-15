@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickEats | Food Delivery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg { background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans">
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-orange-600"><i class="fas fa-utensils mr-2"></i>QuickEats</h1>
+            <div class="flex items-center gap-4">
+                <button id="cart-btn" class="relative p-2 hover:bg-gray-100 rounded-full">
+                    <i class="fas fa-shopping-bag text-xl"></i>
+                    <span id="cart-count" class="absolute -top-1 -right-1 bg-orange-600 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="gradient-bg text-white py-16 px-4 text-center">
+        <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Delicious meals, delivered fast.</h2>
+        <p class="text-lg opacity-90">Order from your favorite local restaurants.</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-12">
+        <div id="menu-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Items injected by JS -->
+        </div>
+    </main>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-2xl">
+            <h3 class="text-xl font-bold mb-4">Your Order</h3>
+            <div id="cart-items" class="space-y-4 mb-6"></div>
+            <div class="border-t pt-4 font-bold text-lg flex justify-between">
+                <span>Total:</span>
+                <span id="cart-total">$0.00</span>
+            </div>
+            <button onclick="toggleCart()" class="w-full mt-6 bg-orange-600 text-white py-3 rounded-xl font-semibold hover:bg-orange-700">Checkout Now</button>
+        </div>
+    </div>
+
+    <script>
+        const menu = [
+            { id: 1, name: "Classic Burger", price: 12.99, img: "🍔" },
+            { id: 2, name: "Margherita Pizza", price: 15.50, img: "🍕" },
+            { id: 3, name: "Sushi Platter", price: 22.00, img: "🍣" },
+            { id: 4, name: "Garden Salad", price: 9.99, img: "🥗" },
+            { id: 5, name: "Taco Trio", price: 11.50, img: "🌮" },
+            { id: 6, name: "Ice Cream", price: 5.99, img: "🍦" }
+        ];
+
+        let cart = [];
+
+        function renderMenu() {
+            const grid = document.getElementById('menu-grid');
+            grid.innerHTML = menu.map(item => `
+                <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                    <div class="text-6xl mb-4 text-center">${item.img}</div>
+                    <h3 class="text-xl font-semibold">${item.name}</h3>
+                    <p class="text-orange-600 font-bold mt-2">$${item.price.toFixed(2)}</p>
+                    <button onclick="addToCart(${item.id})" class="w-full mt-4 border-2 border-orange-600 text-orange-600 py-2 rounded-lg hover:bg-orange-600 hover:text-white transition-colors">Add to Cart</button>
+                </div>
+            `).join('');
+        }
+
+        function addToCart(id) {
+            const item = menu.find(i => i.id === id);
+            cart.push(item);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            document.getElementById('cart-count').innerText = cart.length;
+            const container = document.getElementById('cart-items');
+            container.innerHTML = cart.map((item, index) => `
+                <div class="flex justify-between items-center">
+                    <span>${item.name}</span>
+                    <span>$${item.price.toFixed(2)}</span>
+                </div>
+            `).join('');
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            document.getElementById('cart-total').innerText = `$${total.toFixed(2)}`;
+        }
+
+        function toggleCart() {
+            document.getElementById('cart-modal').classList.toggle('hidden');
+        }
+
+        document.getElementById('cart-btn').addEventListener('click', toggleCart);
+        renderMenu();
+    </script>
+</body>
+</html>

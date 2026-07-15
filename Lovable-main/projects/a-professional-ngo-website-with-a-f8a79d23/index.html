@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Hope NGO - Making a Difference</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e3a5f;
+            --light-blue: #2c5aa0;
+            --accent-green: #27ae60;
+            --light-green: #2ecc71;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --dark-gray: #333333;
+            --text-gray: #555555;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-gray);
+            background-color: var(--white);
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--primary-blue);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            color: var(--light-green);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--light-green);
+        }
+
+        .donate-btn {
+            background-color: var(--accent-green);
+            color: var(--white);
+            padding: 0.6rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .donate-btn:hover {
+            background-color: var(--light-green);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 0.4rem;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--white);
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--light-blue) 100%);
+            color: var(--white);
+            padding: 6rem 2rem;
+            text-align: center;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            opacity: 0.95;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-green);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--light-green);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background-color: var(--white);
+            color: var(--primary-blue);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--light-gray);
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            text-align: center;
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* About Section */
+        #about {
+            background-color: var(--light-gray);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            color: var(--primary-blue);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--accent-green) 100%);
+            height: 300px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--white);
+        }
+
+        /* Statistics Section */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            color: var(--accent-green);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        /* Programs Section */
+        #programs {
+            background-color: var(--white);
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .program-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .program-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .program-icon {
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--accent-green) 100%);
+            padding: 2rem;
+            text-align: center;
+            font-size: 3rem;
+            color: var(--white);
+        }
+
+        .program-content {
+            padding: 2rem;
+        }
+
+        .program-content h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .program-content p {
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .learn-more {
+            color: var(--accent-green);
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s ease;
+        }
+
+        .learn-more:hover {
+            gap: 0.8rem;
+        }
+
+        /* Get Involved Section */
+        #get-involved {
+            background-color: var(--light-gray);
+        }
+
+        .involved-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .involved-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .involved-icon {
+            font-size: 3rem;
+            color: var(--accent-green);
+            margin-bottom: 1rem;
+        }
+
+        .involved-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .involved-card p {
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Volunteer Form */
+        .form-section {
+            background-color: var(--white);
+            padding: 3rem;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 3rem auto;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .form-section h3 {
+            color: var(--primary-blue);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary-blue);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-green);
+            box-shadow: 0 0 5px rgba(39, 174, 96, 0.3);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit {
+            width: 100%;
+            background-color: var(--accent-green);
+            color: var(--white);
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-submit:hover {
+            background-color: var(--light-green);
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: var(--light-gray);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            color: var(--accent-green);
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card p {
+            color: var(--text-gray);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-section {
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--light-green);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-gray);
+            border: none;
+            background: none;
+        }
+
+        .modal-close:hover {
+            color: var(--primary-blue);
+        }
+
+        .modal h2 {
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background-color: var(--primary-blue);
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            .nav-links.active li {
+                border-bottom: 1px solid rgba(255,255,255,0.2);
+                padding-bottom: 1rem;
+            }
+
+            .nav-links.active li:last-child {
+                border-bottom: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 3rem 1rem;
+                min-height: 400px;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .section {
+                padding: 2rem 1rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .program-card {
+                margin: 0;
+            }
+
+            .form-section {
+                padding: 1.5rem;
+                margin: 1.5rem 1rem;
+            }
+        }
+
+        /* Accessibility */
+        a:focus,
+        button:focus {
+            outline: 2px solid var(--accent-green);
+            outline-offset: 2px;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        /* Success Message */
+        .success-message {
+            background-color: var(--light-green);
+            color: var(--white);
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-heart"></i>
+                Global Hope
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#programs">Our Programs</a></li>
+                <li><a href="#get-involved">Get Involved</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><button class="donate-btn" onclick="openDonateModal()">Donate</button></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Making a Real Difference</h1>
+        <p>Together, we're building a better future for communities in need. Join us in creating lasting change through compassion, action, and hope.</p>
+        <div class="hero-buttons">
+            <button class="btn btn-primary" onclick="openDonateModal()">Donate Now</button>
+            <button class="btn btn-secondary" onclick="scrollToSection('get-involved')">Get Involved</button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Our Mission</h3>
+                    <p>Global Hope is dedicated to empowering communities and transforming lives through education, healthcare, and sustainable development initiatives. We believe that every person deserves the opportunity to reach their full potential.</p>
+                    <p>Founded in 2015, we've worked with over 50 communities across 15 countries, impacting the lives of hundreds of thousands of people. Our approach combines local expertise with global resources to create solutions that are both effective and culturally appropriate.</p>
+                    <p>We're transparent, accountable, and committed to making every donation count. Our work is guided by the principles of dignity, equity, and sustainability.</p>
+                </div>
+                <div class="about-image">
+                    <i class="fas fa-globe"></i>
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Communities Served</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">500K+</div>
+                    <div class="stat-label">Lives Impacted</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">15</div>
+                    <div class="stat-label">Countries Worldwide</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Funds to Programs</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="section" id="programs">
+        <div class="container">
+            <h2 class="section-title">Our Programs</h2>
+            <p class="section-subtitle">We run comprehensive programs designed to create sustainable change and improve quality of life.</p>
+            
+            <div class="programs-grid">
+                <div class="program-card">
+                    <div class="program-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="program-content">
+                        <h3>Education Initiative</h3>
+                        <p>Providing quality education and scholarships to underprivileged children, ensuring they have access to learning opportunities that can transform their futures.</p>
+                        <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="program-card">
+                    <div class="program-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="program-content">
+                        <h3>Healthcare Program</h3>
+                        <p>Delivering essential medical services and health education to remote and underserved areas, improving community health outcomes.</p>
+                        <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="program-card">
+                    <div class="program-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="program-content">
+                        <h3>Environmental Conservation</h3>
+                        <p>Protecting ecosystems and promoting sustainable practices that benefit both communities and the planet for generations to come.</p>
+                        <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="program-card">
+                    <div class="program-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="program-content">
+                        <h3>Skills Training</h3>
+                        <p>Empowering individuals with vocational skills and job training to create economic opportunities and sustainable livelihoods.</p>
+                        <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="program-card">
+                    <div class="program-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <div class="program-content">
+                        <h3>Water & Sanitation</h3>
+                        <p>Installing clean water systems and sanitation facilities to prevent disease and improve health in vulnerable communities.</p>
+                        <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="program-card">
+                    <div class="program-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="program-content">
+                        <h3>Community Development</h3>
+                        <p>Building local capacity and fostering community leadership to create self-sustaining solutions tailored to each region's unique needs.</p>
+                        <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Get Involved Section -->
+    <section class="section" id="get-involved">
+        <div class="container">
+            <h2 class="section-title">Get Involved</h2>
+            <p class="section-subtitle">There are many ways you can make a difference. Choose how you'd like to contribute.</p>
+            
+            <div class="involved-grid">
+                <div class="involved-card">
+                    <div class="involved-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3>Donate</h3>
+                    <p>Your financial contribution directly supports our programs and helps us reach more communities in need.</p>
+                    <button class="btn btn-primary" onclick="openDonateModal()">Make a Donation</button>
+                </div>
+
+                <div class="involved-card">
+                    <div class="involved-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Volunteer</h3>
+                    <p>Join our team of dedicated volunteers and contribute your time and skills to make a direct impact.</p>
+                    <button class="btn btn-primary" onclick="scrollToVolunteerForm()">Sign Up as Volunteer</button>
+                </div>
+
+                <div class="involved-card">
+                    <div class="involved-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h3>Advocate</h3>
+                    <p>Spread awareness about our mission and help us reach more supporters through your networks.</p>
+                    <button class="btn btn-primary" onclick="alert('Thank you for your interest in advocating for Global Hope!')">Learn More</button>
+                </div>
+            </div>
+
+            <!-- Volunteer Form -->
+            <div class="form-section">
+                <h3>Volunteer Sign-Up Form</h3>
+                <form id="volunteerForm" onsubmit="handleVolunteerSubmit(event)">
+                    <div id="formMessage"></div>
+                    
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="interest">Area of Interest *</label>
+                        <select id="interest" name="interest" required>
+                            <option value="">Select an area</option>
+                            <option value="education">Education</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="environment">Environmental Conservation</option>
+                            <option value="skills">Skills Training</option>
+                            <option value="water">Water & Sanitation</option>
+                            <option value="community">Community Development</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="availability">Availability *</label>
+                        <select id="availability" name="availability" required>
+                            <option value="">Select availability</option>
+                            <option value="weekdays">Weekdays</option>
+                            <option value="weekends">Weekends</option>
+                            <option value="flexible">Flexible</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Tell us about yourself</label>
+                        <textarea id="message" name="message" placeholder="Share your skills, experience, or why you want to volunteer..."></textarea>
+                    </div>
+
+                    <button type="submit" class="form-submit">Submit Volunteer Application</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <p class="section-subtitle">We'd love to hear from you. Get in touch with us today.</p>
+            
+            <div class="contact-content">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Address</h3>
+                    <p>123 Hope Street<br>New York, NY 10001<br>United States</p>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3>Phone</h3>
+                    <p>+1 (555) 123-4567<br>Monday - Friday<br>9:00 AM - 5:00 PM EST</p>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email</h3>
+                    <p>info@globalhope.org<br>donations@globalhope.org<br>volunteer@globalhope.org</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donation Modal -->
+    <div class="modal" id="donateModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeDonateModal()">&times;</button>
+            <h2>Make a Donation</h2>
+            <form id="donationForm" onsubmit="handleDonationSubmit(event)">
+                <div id="donationMessage"></div>
+
+                <div class="form-group">
+                    <label for="donorName">Full Name *</label>
+                    <input type="text" id="donorName" name="donorName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="donorEmail">Email Address *</label>
+                    <input type="email" id="donorEmail" name="donorEmail" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="donationAmount">Donation Amount (USD) *</label>
+                    <input type="number" id="donationAmount" name="donationAmount" min="1" step="0.01" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="donationType">Donation Type *</label>
+                    <select id="donationType" name="donationType" required>
+                        <option value="">Select a type</option>
+                        <option value="general">General Donation</option>
+                        <option value="education">Education Program</option>
+                        <option value="healthcare">Healthcare Program</option>
+                        <option value="emergency">Emergency Relief</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="donorMessage">Message (Optional)</label>
+                    <textarea id="donorMessage" name="donorMessage" placeholder="Share why you're supporting Global Hope..."></textarea>
+                </div>
+
+                <button type="submit" class="form-submit">Complete Donation</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when a link is clicked
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Donation Modal Functions
+        function openDonateModal() {
+            document.getElementById('donateModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDonateModal() {
+            document.getElementById('donateModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (event) => {
+            const modal = document.getElementById('donateModal');
+            if (event.target === modal) {
+                closeDonateModal();
+            }
+        });
+
+        // Scroll to Section
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function scrollToVolunteerForm() {
+            const form = document.querySelector('.form-section');
+            if (form) {
+                form.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Handle Donation Form Submission
+        function handleDonationSubmit(event) {
+            event.preventDefault();
+            
+            const donorName = document.getElementById('donorName').value;
+            const donationAmount = document.getElementById('donationAmount').value;
+            const donationType = document.getElementById('donationType').value;
+            
+            const messageDiv = document.getElementById('donationMessage');
+            messageDiv.innerHTML = `<div class="success-message">Thank you, ${donorName}! Your donation of $${parseFloat(donationAmount).toFixed(2)} to ${donationType} has been received. We'll send a confirmation email shortly.</div>`;
+            
+            // Reset form
+            document.getElementById('donationForm').reset();
+            
+            // Clear message after 5 seconds and close modal
+            setTimeout(() => {
+                closeDonateModal();
+                messageDiv.innerHTML = '';
+            }, 5000);
+        }
+
+        // Handle Volunteer Form Submission
+        function handleVolunteerSubmit(event) {
+            event.preventDefault();
+            
+            const fullName = document.getElementById('fullName').value;
+            const interest = document.getElementById('interest').value;
+            
+            const messageDiv = document.getElementById('formMessage');
+            messageDiv.innerHTML = `<div class="success-message">Thank you, ${fullName}! Your volunteer application has been received. We'll be in touch soon with more information about opportunities in ${interest}.</div>`;
+            
+            // Reset form
+            document.getElementById('volunteerForm').reset();
+            
+            // Clear message after 5 seconds
+            setTimeout(() => {
+                messageDiv.innerHTML = '';
+            }, 5000);
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    scrollToSection(href.substring(1));
+                }
+            });
+        });
+
+        // Close mobile menu on resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

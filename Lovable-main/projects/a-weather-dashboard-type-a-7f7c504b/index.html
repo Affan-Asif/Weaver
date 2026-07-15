@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban Board</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-100 min-h-screen p-8">
+    <div class="max-w-6xl mx-auto">
+        <h1 class="text-3xl font-bold text-slate-800 mb-8">Kanban Board</h1>
+        <div class="flex gap-4 mb-8">
+            <input id="cardInput" type="text" placeholder="New task..." class="p-3 rounded-lg border border-slate-300 w-64">
+            <button onclick="addCard()" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700">Add Task</button>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-slate-200 p-4 rounded-xl min-h-[500px]" ondrop="drop(event, 'todo')" ondragover="allowDrop(event)">
+                <h2 class="font-bold text-slate-700 mb-4">To Do</h2>
+                <div id="todo" class="space-y-3"></div>
+            </div>
+            <div class="bg-slate-200 p-4 rounded-xl min-h-[500px]" ondrop="drop(event, 'doing')" ondragover="allowDrop(event)">
+                <h2 class="font-bold text-slate-700 mb-4">In Progress</h2>
+                <div id="doing" class="space-y-3"></div>
+            </div>
+            <div class="bg-slate-200 p-4 rounded-xl min-h-[500px]" ondrop="drop(event, 'done')" ondragover="allowDrop(event)">
+                <h2 class="font-bold text-slate-700 mb-4">Done</h2>
+                <div id="done" class="space-y-3"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function loadCards() {
+            const res = await fetch('/api/cards');
+            const cards = await res.json();
+            ['todo', 'doing', 'done'].forEach(s => document.getElementById(s).innerHTML = '');
+            cards.forEach(c => {
+                const el = document.createElement('div');
+                el.className = 'bg-white p-4 rounded shadow cursor-move';
+                el.draggable = true;
+                el.id = `card-${c.id}`;
+                el.innerText = c.text;
+                el.ondragstart = (e) => e.dataTransfer.setData('text', c.id);
+                document.getElementById(c.status).appendChild(el);
+            });
+        }
+
+        async function addCard() {
+            const input = document.getElementById('cardInput');
+            if (!input.value) return;
+            await fetch('/api/cards', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({text: input.value, status: 'todo'})
+            });
+            input.value = '';
+            loadCards();
+        }
+
+        function allowDrop(e) { e.preventDefault(); }
+        async function drop(e, status) {
+            e.preventDefault();
+            const id = e.dataTransfer.getData('text');
+            await fetch(`/api/cards/${id}`, {
+                method: 'PUT',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({status})
+            });
+            loadCards();
+        }
+
+        loadCards();
+    </script>
+</body>
+</html>

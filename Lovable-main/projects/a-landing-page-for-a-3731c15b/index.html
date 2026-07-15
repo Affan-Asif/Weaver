@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daybreak | Fresh Coffee Delivered</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #faf7f2;
+            color: #4a3728;
+        }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        .bg-cream { background-color: #faf7f2; }
+        .text-coffee { color: #4a3728; }
+        .bg-coffee { background-color: #4a3728; }
+        .border-coffee { border-color: #4a3728; }
+    </style>
+</head>
+<body class="bg-cream">
+
+    <nav class="sticky top-0 z-50 bg-cream/90 backdrop-blur-sm border-b border-coffee/10">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold tracking-tight">DAYBREAK</div>
+            <div class="space-x-8 font-medium hidden md:block">
+                <a href="#plans" class="hover:underline">Plans</a>
+                <a href="#testimonials" class="hover:underline">Stories</a>
+                <a href="#" class="bg-coffee text-white px-6 py-2 rounded-full hover:bg-opacity-90 transition">Subscribe</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="h-[80vh] flex flex-col justify-center items-center text-center px-6">
+        <h1 class="text-6xl md:text-8xl mb-6">Wake up to better.</h1>
+        <p class="text-xl md:text-2xl max-w-2xl mb-8 font-light">Ethically sourced, artisan roasted, and delivered to your doorstep at the peak of freshness.</p>
+        <a href="#plans" class="bg-coffee text-white px-10 py-4 rounded-full text-lg hover:scale-105 transition transform">Choose Your Roast</a>
+    </header>
+
+    <section id="plans" class="py-20 px-6 max-w-6xl mx-auto">
+        <h2 class="text-4xl text-center mb-16">Choose Your Ritual</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-3xl border border-coffee/10 shadow-sm flex flex-col">
+                <h3 class="text-2xl mb-4">Light Roast</h3>
+                <p class="text-sm mb-6 flex-grow">Floral notes, bright acidity, and a tea-like finish for the morning purist.</p>
+                <div class="text-4xl font-bold mb-6">$18<span class="text-base font-normal">/mo</span></div>
+                <button class="w-full py-3 rounded-full border-2 border-coffee text-coffee hover:bg-coffee hover:text-white transition">Select</button>
+            </div>
+            <div class="bg-coffee text-white p-8 rounded-3xl shadow-xl flex flex-col transform md:-translate-y-4">
+                <h3 class="text-2xl mb-4">Regular Roast</h3>
+                <p class="text-sm mb-6 flex-grow">Balanced, nutty, and chocolatey. The perfect daily driver for any brew method.</p>
+                <div class="text-4xl font-bold mb-6">$22<span class="text-base font-normal">/mo</span></div>
+                <button class="w-full py-3 rounded-full bg-white text-coffee hover:bg-gray-100 transition">Select</button>
+            </div>
+            <div class="bg-white p-8 rounded-3xl border border-coffee/10 shadow-sm flex flex-col">
+                <h3 class="text-2xl mb-4">Bold Roast</h3>
+                <p class="text-sm mb-6 flex-grow">Deep, smoky, and intense. Robust flavor profile for those who love a dark cup.</p>
+                <div class="text-4xl font-bold mb-6">$20<span class="text-base font-normal">/mo</span></div>
+                <button class="w-full py-3 rounded-full border-2 border-coffee text-coffee hover:bg-coffee hover:text-white transition">Select</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-4xl mb-12">Loved by Coffee Lovers</h2>
+            <div class="space-y-12">
+                <blockquote class="text-xl italic font-light">"Daybreak has completely changed my morning routine. The freshness is unlike anything I've bought in a store."</blockquote>
+                <p class="font-bold uppercase tracking-widest text-sm">— Sarah J., Portland</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 text-center text-sm opacity-60">
+        <p>&copy; 2023 Daybreak Coffee Co. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

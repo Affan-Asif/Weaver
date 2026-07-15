@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Live Converter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { height: 100vh; display: flex; flex-direction: column; }
+        #editor, #preview { height: calc(100vh - 60px); overflow-y: auto; }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <header class="bg-indigo-600 text-white p-4 shadow-md">
+        <h1 class="text-xl font-bold">Markdown Live Converter</h1>
+    </header>
+    <main class="flex flex-1 overflow-hidden">
+        <textarea id="editor" class="w-1/2 p-4 border-r border-gray-300 focus:outline-none font-mono text-sm" placeholder="Type markdown here..."></textarea>
+        <div id="preview" class="w-1/2 p-6 bg-white prose max-w-none"></div>
+    </main>
+
+    <script>
+        const editor = document.getElementById('editor');
+        const preview = document.getElementById('preview');
+
+        let timeout = null;
+
+        const convert = async (text) => {
+            try {
+                const response = await fetch('/convert', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text })
+                });
+                const data = await response.json();
+                preview.innerHTML = data.html;
+            } catch (err) {
+                console.error('Conversion failed', err);
+            }
+        };
+
+        editor.addEventListener('input', (e) => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => convert(e.target.value), 300);
+        });
+    </script>
+</body>
+</html>
